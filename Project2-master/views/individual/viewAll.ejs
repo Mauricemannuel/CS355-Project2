@@ -1,0 +1,19 @@
+<%- include("../includes/header.ejs", {extra: '', title:"Characters - View All", url:"http://assets2.ignimgs.com/2013/11/13/marvel-logo-1280jpg-8851ea_1280w.jpg"}); %>
+        <div class="minytbox">
+            <a href="/"><h4><< back</h4></a>
+        </div>
+        <rj>
+            <h1>Characters</h1>
+            <mycontainer>
+                <% for(var i=0; result.length > i; i++ ) { %>
+                    <div class="transimg">
+                        <a href="/individual/?individual_id=<%= result[i].individual_id %>">
+                            <img src="<%= result[i].image_url %>" alt="<%= result[i].display_name %>">
+                            <p><%= result[i].display_name %></p>
+                        </a>
+                    </div>
+                <% } %>
+            </mycontainer>
+        </rj>
+    </body>
+</html>
