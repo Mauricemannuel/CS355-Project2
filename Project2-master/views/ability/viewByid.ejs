@@ -3,6 +3,11 @@
 <%- include("../includes/navbar.ejs"); %>
 <div class="transbox " >
     <h1><%= result[0].ability_name %></h1>
+    <ul>
+        <%= result[0].description %><br>
+    </ul>
+
+    <h1>People with this ability:</h1>
     <% if(individual instanceof Array) { %>
     <ul>
         <% for(var i=0; individual.length > i; i++ ) { %>
@@ -19,6 +24,15 @@
         </a>
     </ul>
     <% } %>
+</div>
+<div class="miny">
+<button style="background-color: transparent; border: 0px;" onclick="event.preventDefault();window.location.href='/ability/edit2/?ability_id=<%= result[0].ability_id %>'">UPDATE</button>
+</div>
+<div class="miny" style="margin-top: 0px">
+    <form action="/ability/delete" style="display:inline;">
+        <input type="hidden" name="ability_id" id="ability_id" value="<%= result[0].ability_id %>" />
+        <input type="submit" value="DELETE" style="background-color: transparent; border: 0px;"/>
+    </form>
 </div>
 </body>
 </html>

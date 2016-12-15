@@ -146,7 +146,6 @@ exports.insert = function(params, callback) {
             });
         });
     });
-
 };
 
 exports.insertU = function(params, callback) {
@@ -203,13 +202,9 @@ exports.insertU = function(params, callback) {
 exports.delete = function(individual_id, callback) {
     var query = 'DELETE FROM individual WHERE individual_id = ?';
     var queryData = [individual_id];
-    // console.log('Individual ID: ' + individual_id);
-    // console.log(query + "\n" + queryData);
-
     connection.query(query, queryData, function(err, result) {
         callback(err, result);
     });
-
 };
 
 exports.update = function(params, callback) {

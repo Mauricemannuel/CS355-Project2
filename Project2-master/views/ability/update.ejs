@@ -1,0 +1,42 @@
+<%- include("../includes/header.ejs", {extra: '', title:"Characters - View All", url:"http://www.solidbackgrounds.com/images/2560x1440/2560x1440-black-solid-color-background.jpg"}); %>
+<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="50">
+<%- include("../includes/navbar.ejs"); %>
+
+
+<br>
+<form action="/ability/update" method="get">
+    <input type="hidden" id="ability_id" name="ability_id" value="<%= ability.ability_id %>">
+    Name: <input style="width: 20%" id="ability_name" name="ability_name" type="text" value="<%= ability.ability_name %>"/>
+    <br />
+    Description: <input style="width: 20%" id="decsription" name="description" type="text" value="<%= ability.description %>"/>
+    <br />
+    Members:</br>
+    <select id="individual_id" name="individual_id" multiple="multiple">
+        <% for(var i=0; individual.length > i; i++ ) {
+            var selected = "";
+            for (var j = 0; member.length > j; j++) {
+                if (selected == "" && individual[i].individual_id == member[j].individual_id) {
+                    selected = "selected";
+                }
+            }
+        %>
+        <option value="<%= individual[i].individual_id %>" <%= selected %>><%= individual[i].display_name %></option>
+        <% } %>
+    </select>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#individual_id').multiselect();
+        });
+    </script>
+    </br>
+    <input type="submit" />
+</form>
+
+
+<footer class="text-center">
+    <a class="up-arrow" href="#myPage" data-toggle="tooltip" title="TO TOP">
+        <span class="glyphicon glyphicon-chevron-up"></span>
+    </a>
+</footer>
+</body>
+</html>

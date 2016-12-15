@@ -1,0 +1,34 @@
+<%- include("../includes/header.ejs", {extra: '', title:"Characters - View All", url:"http://www.solidbackgrounds.com/images/2560x1440/2560x1440-black-solid-color-background.jpg"}); %>
+<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="50">
+<%- include("../includes/navbar.ejs"); %>
+
+
+<br>
+<form action="/team/insert" method="get">
+    Name: <input style="width: 20%" id="team_name" name="team_name" type="text" />
+    <br />
+    Photo URL: <input style="width: 20%" id="team_image_url" name="team_image_url" type="text" />
+    <br />
+    Members:</br>
+    <select id="individual_id" name="individual_id" multiple="multiple">
+        <% for(var i=0; individual.length > i; i++ ) { %>
+        <option value="<%= individual[i].individual_id %>"><%= individual[i].display_name %></option>
+        <% } %>
+    </select>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#individual_id').multiselect();
+        });
+    </script>
+    </br>
+    <input type="submit" />
+</form>
+
+
+<footer class="text-center">
+    <a class="up-arrow" href="#myPage" data-toggle="tooltip" title="TO TOP">
+        <span class="glyphicon glyphicon-chevron-up"></span>
+    </a>
+</footer>
+</body>
+</html>

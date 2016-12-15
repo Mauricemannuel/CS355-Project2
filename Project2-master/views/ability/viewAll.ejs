@@ -3,7 +3,7 @@
 <%- include("../includes/navbar.ejs"); %>
 <h1 align="center">Abilities</h1>
         <container>
-        <div class="row">
+        <div class="row" style="margin-bottom: 60px">
             <% for(var i=0; result.length > i; i++ ) { %>
                 <div class="transboxM">
                 <a href="/ability/?ability_id=<%= result[i].ability_id %>">
@@ -11,7 +11,7 @@
                 </a>
                     <p><%= result[i].description %></p>
                 </div>
-            <% } %><p style="font-size: larger">1hhvghghghggguvjvj</p>
+            <% } %>
         </container>
         <footer class="text-center">
             <a class="up-arrow" href="#myPage" data-toggle="tooltip" title="TO TOP">
