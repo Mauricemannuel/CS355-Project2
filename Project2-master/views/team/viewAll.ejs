@@ -1,19 +1,28 @@
-<%- include("../includes/header.ejs", {extra: '', title:"Teams - View All", url:"http://assets2.ignimgs.com/2013/11/13/marvel-logo-1280jpg-8851ea_1280w.jpg"}); %>
-<div class="minytbox">
-    <a href="/"><h4><< back</h4></a>
-</div>
-<rj>
-    <h1>Teams</h1>
-    <mycontainer>
+<%- include("../includes/header.ejs", {extra: '', title:"Teams - View All", url:"http://www.solidbackgrounds.com/images/2560x1440/2560x1440-black-solid-color-background.jpg"}); %>
+<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="50">
+<%- include("../includes/navbar.ejs"); %>
+<h1 align="center">Teams</h1>
+<container>
+    <div class="row">
         <% for(var i=0; result.length > i; i++ ) { %>
-        <div class="transimgXL">
+        <div class="col-sm-6">
             <a href="/team/?team_id=<%= result[i].team_id %>">
-                <img src="<%= result[i].team_image_url %>" alt="<%= result[i].team_name %>">
-                <p><%= result[i].team_name %></p>
+                <p class="text-center" style="font-size: large;"><strong><%= result[i].team_name %></strong></p>
+                <img src="<%= result[i].team_image_url %>" class="img-thumbnail feature" alt="<%= result[i].team_name %>"
+                     style="margin: 10px 8vw; width: 600px; height: 350px">
             </a>
         </div>
         <% } %>
-    </mycontainer>
-</rj>
+    </div><br>
+</container>
+<footer class="text-center">
+    <a class="up-arrow" href="#myPage" data-toggle="tooltip" title="TO TOP">
+        <span class="glyphicon glyphicon-chevron-up"></span>
+    </a>
+</footer>
+
+
+
 </body>
 </html>
+

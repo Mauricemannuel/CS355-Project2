@@ -1,11 +1,95 @@
 <%- include("./includes/header.ejs", {extra: '',title: title, url: url}); %>
-<div class="transboxXL">
-    <h1><%= title %></h1>
-    <p>Welcome to the <%= title %>.</p>
-    <br />
-    <a href="/individual/all">All Characters</a> <br />
-    <a href="/individual/good">The Good Guys</a> <br />
-    <a href="/individual/bad">The Bad Guys</a> <br />
-    <a href="/team/all">All Teams</a> <br />
+<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="50">
+<%- include("./includes/navbar.ejs"); %>
+<div class="container text-center">
+    <h3>THE MARVEL CINEMATIC UNIVERSE</h3>
+    <p><em>WELCOME!</em></p>
+    <p>We love Marvel, so we created a website to keep track of some of the characters and what they can do.</p>
+    <p>Here are some featured pages:</p>
+    <br>
+    <div class="row">
+        <div class="col-sm-4">
+            <a href="/individual/?individual_id=<%= individual[0].individual_id %>">
+            <p class="text-center"><strong><%= individual[0].display_name %></strong></p><br>
+            </a>
+            <a href="#demo" data-toggle="collapse">
+                <img src="<%= individual[0].image_url %>" class="img-thumbnail feature" alt="<%= individual[0].display_name %>">
+            </a>
+            <div id="demo" class="collapse">
+                <p>His real name is <%= individual[0].real_name %>.</p>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <a href="/team/?team_id=<%= team[0].team_id %>">
+                <p class="text-center"><strong><%= team[0].team_name %></strong></p><br>
+            </a>
+            <a href="#demo2" data-toggle="collapse">
+                <img src="<%= team[0].team_image_url %>" class="img-thumbnail feature" alt="<%= team[0].team_name %>">
+            </a>
+            <div id="demo2" class="collapse">
+                <p>They're falling apart.</p>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <a href="/ability/?ability_id=<%= ability[14].ability_id %>">
+                <p class="text-center"><strong><%= ability[14].ability_name %></strong></p><br>
+            </a>
+            <a href="#demo3" data-toggle="collapse">
+                <img src="<%= ability_url %>" class="img-thumbnail feature" alt="<%= ability[14].ability_name %>" width="355px" height="255px">
+            </a>
+            <div id="demo3" class="collapse">
+                <a href="/ability/?ability_id=<%= ability[14].ability_id %>">
+                    <p>See more.</p>
+                </a>
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-sm-4">
+            <a href="/individual/?individual_id=<%= individual[14].individual_id %>">
+                <p class="text-center"><strong><%= individual[14].display_name %></strong></p><br>
+            </a>
+            <a href="#demo4" data-toggle="collapse">
+                <img src="<%= individual[14].image_url %>" class="img-thumbnail feature" alt="<%= individual[14].display_name %>">
+            </a>
+            <div id="demo4" class="collapse">
+                <p>You can't trust him.</p>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <a href="/team/?team_id=<%= team[1].team_id %>">
+                <p class="text-center"><strong><%= team[1].team_name %></strong></p><br>
+            </a>
+            <a href="#demo5" data-toggle="collapse">
+                <img src="<%= team[1].team_image_url %>" class="img-thumbnail feature" alt="<%= team[1].team_name %>">
+            </a>
+            <div id="demo5" class="collapse">
+                <p>Just a bunch of criminals.</p>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <a href="/ability/?ability_id=<%= ability[5].ability_id %>">
+                <p class="text-center"><strong><%= ability[5].ability_name %></strong></p><br>
+            </a>
+            <a href="#demo6" data-toggle="collapse">
+                <img src="<%= ability_url %>" class="img-thumbnail feature" alt="<%= ability[5].ability_name %>" width="355px" height="255px">
+            </a>
+            <div id="demo6" class="collapse">
+                <a href="/ability/?ability_id=<%= ability[5].ability_id %>">
+                    <p>See more.</p>
+                </a>
+            </div>
+        </div>
+    </div>
 </div>
+
+<footer class="text-center">
+    <a class="up-arrow" href="#myPage" data-toggle="tooltip" title="TO TOP">
+        <span class="glyphicon glyphicon-chevron-up"></span>
+    </a>
+</footer>
+
+<script>
+
 <%- include("./includes/footer.ejs"); %>

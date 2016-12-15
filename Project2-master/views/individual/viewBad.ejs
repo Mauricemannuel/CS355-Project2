@@ -1,19 +1,25 @@
 <%- include("../includes/header.ejs", {extra: '', title:"Characters - View All", url:"http://assets2.ignimgs.com/2013/11/13/marvel-logo-1280jpg-8851ea_1280w.jpg"}); %>
-<div class="minytbox">
-    <a href="/"><h4><< back</h4></a>
+<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="50">
+<div id="wrapper">
+    <%- include("../includes/navbar.ejs"); %>
+<h1 align="center">The Bad Guys</h1>
+<container>
+    <div class="row">
+        <% for(var i=0; result.length > i; i++ ) { %>
+        <div class="col-sm-3">
+            <a href="/individual/?individual_id=<%= result[i].individual_id %>">
+                <p  class="text-center"><strong><%= result[i].display_name %></strong></p>
+                <img src="<%= result[i].image_url %>" class="img-thumbnail feature" alt="<%= result[i].display_name %>">
+            </a>
+        </div>
+        <% } %>
+    </div>
+</container>
+<footer class="text-center">
+    <a class="up-arrow" href="#myPage" data-toggle="tooltip" title="TO TOP">
+        <span class="glyphicon glyphicon-chevron-up"></span>
+    </a>
+</footer>
 </div>
-        <rj>
-            <h1>The Bad Guys</h1>
-            <mycontainer>
-                <% for(var i=0; result.length > i; i++ ) { %>
-                    <div class="transimg">
-                        <a href="/individual/?individual_id=<%= result[i].individual_id %>">
-                            <img src="<%= result[i].image_url %>" alt="<%= result[i].display_name %>">
-                            <p><%= result[i].display_name %></p>
-                        </a>
-                    </div>
-                <% } %>
-            </mycontainer>
-        </rj>
     </body>
 </html>

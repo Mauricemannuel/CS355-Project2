@@ -1,13 +1,12 @@
 <%- include("../includes/header.ejs", {extra : ' overflow: hidden', title: result[0].display_name, url: result[0].team_image_url}); %>
-<div class="minytbox">
-    <a href="javascript:history.back()"><h4><< go back</h4></a>
-</div>
-<div class="minytbox">
-    <a href="/team/all"><h4><< Teams</h4></a>
-</div>
-<br>
-<div class="transbox " >
-    <h1><%= result[0].team_name %></h1>
+<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="50" background=<%= result[0].team_image_url %>>
+<div id="wrapper">
+    <%- include("../includes/navbar.ejs"); %>
+    <container>
+        <div class="row">
+            <div class="transbox">
+
+    <h1 align="center"><%= result[0].team_name %></h1>
     <% if(member instanceof Array) { %>
     <ul>
         <% for(var i=0; member.length > i; i++ ) { %>
@@ -25,5 +24,15 @@
     </ul>
     <% } %>
 </div>
+</div>
+</container>
+<footer class="text-center">
+</footer>
+</div>
+
+
+
+
+
 </body>
 </html>

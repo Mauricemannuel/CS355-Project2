@@ -1,0 +1,22 @@
+<%- include("../includes/header.ejs", {extra: '', title:"Abilities - View All", url:"http://www.solidbackgrounds.com/images/2560x1440/2560x1440-black-solid-color-background.jpg"}); %>
+<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="50">
+<%- include("../includes/navbar.ejs"); %>
+<h1 align="center">Abilities</h1>
+        <container>
+        <div class="row">
+            <% for(var i=0; result.length > i; i++ ) { %>
+                <div class="transboxM">
+                <a href="/ability/?ability_id=<%= result[i].ability_id %>">
+                    <p class="text-center" style="font-size: large;"><strong><%= result[i].ability_name %></strong></p>
+                </a>
+                    <p><%= result[i].description %></p>
+                </div>
+            <% } %><p style="font-size: larger">1hhvghghghggguvjvj</p>
+        </container>
+        <footer class="text-center">
+            <a class="up-arrow" href="#myPage" data-toggle="tooltip" title="TO TOP">
+                <span class="glyphicon glyphicon-chevron-up"></span>
+            </a>
+        </footer>
+</body>
+</html>

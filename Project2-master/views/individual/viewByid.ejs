@@ -1,60 +1,66 @@
 <%- include("../includes/header.ejs", {extra : ' overflow: hidden', title: result[0].display_name, url: result[0].image_url}); %>
-<div class="minytbox">
-<a href="javascript:history.back()"><h4><< go back</h4></a>
-</div>
-<div class="minytbox">
-    <a href="/individual/all"><h4><< Characters</h4></a>
-</div>
-<br>
-    <div class="transboxR" >
-        <h1><%= result[0].display_name %></h1>
-            <ul>
-                <% for(var i=0; ability.length > i; i++ ) { %>
+<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="50" background=<%= result[0].image_url %>>
+<div id="wrapper">
+    <%- include("../includes/navbar.ejs"); %>
+    <container>
+        <div class="row">
+                <div class="transbox">
+                <h1 align="center"><%= result[0].display_name %></h1>
+                <ul>
+                    <% for(var i=0; ability.length > i; i++ ) { %>
                     <%= ability[i].ability_name %><br>
                     <ul>
-                         - <%=ability[i].description %><br>
+                        - <%=ability[i].description %><br>
                     </ul>
-                <% } %>
-            </ul>
-        </ul>
-    </div>
-    <% if(team[0].team_id != null) { %>
-    <div class="half">
-        <% if(team instanceof Array) { %>
-            <% for(var i=0; team.length > i; i++ ) { %>
-            <div class="transbox" >
+                    <% } %>
+                </ul>
+                </div>
+                <% if(team[0].team_id != null) { %>
+                <% if(team instanceof Array) { %>
+                <% for(var i=0; team.length > i; i++ ) { %>
+                <div class="transbox">
                 <a href="/team/?team_id=<%= team[i].team_id %>">
-                <h1><%= team[i].team_name %></h1>
+                    <h1 align="center"><%= team[i].team_name %></h1>
                 </a>
                 <ul>
                     <% for(var j=0; all.length > j; j++ ) { %>
-                        <% if(team[i].team_name == all[j].team_name) {%>
-                                <a href="/individual/?individual_id=<%= all[j].individual_id %>">
-                                    <%= all[j].display_name %><br>
-                                </a>
-                        <% } %>
+                    <% if(team[i].team_name == all[j].team_name) {%>
+                    <a href="/individual/?individual_id=<%= all[j].individual_id %>">
+                        <%= all[j].display_name %><br>
+                    </a>
+                    <% } %>
                     <% } %>
                 </ul>
-            </div>
-            <% } %>
-        <% } %>
-        <% if(!(team instanceof Array)) { %>
-            <div class="transbox" >
+                </div>
+                <% } %>
+                <% } %>
+                <% if(!(team instanceof Array)) { %>
+                <div class="transbox">
                 <a href="/team/?team_id=<%= team[0].team_id %>">
-                <h1><%= team[0].team_name %></h1>
+                    <h1 align="center"><%= team[0].team_name %></h1>
                 </a>
                 <ul>
                     <% for(var r=0; all.length > r; r++ ) { %>
-                        <% if(team[0].team_name == all[r].team_name) {%>
-                                <a href="/individual/?individual_id=<%= all[r].individual_id %>">
-                                    <%= all[r].display_name %><br>
-                                </a>
-                        <% } %>
+                    <% if(team[0].team_name == all[r].team_name) {%>
+                    <a href="/individual/?individual_id=<%= all[r].individual_id %>">
+                        <%= all[r].display_name %><br>
+                    </a>
+                    <% } %>
                     <% } %>
                 </ul>
+                </div>
+                <% } %>
+                <% } %>
             </div>
-        <% } %>
-    </div>
-    <% } %>
+        </div>
+    </container>
+    <footer class="text-center">
+    </footer>
+</div>
+
+
+
+
+
 </body>
 </html>

@@ -1,0 +1,24 @@
+<%- include("../includes/header.ejs", {extra : ' overflow: hidden', title: result[0].display_name, url: 'http://www.williambrucewest.com/wp-content/uploads/2014/06/marvel_comics_doctor_strange_hd-wallpaper-1395986-the-five-actors-that-could-should-play-marvel-s-doctor-strange.jpeg'}); %>
+<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="50">
+<%- include("../includes/navbar.ejs"); %>
+<div class="transbox " >
+    <h1><%= result[0].ability_name %></h1>
+    <% if(individual instanceof Array) { %>
+    <ul>
+        <% for(var i=0; individual.length > i; i++ ) { %>
+        <a href="/individual/?individual_id=<%= individual[i].individual_id %>">
+            <%= individual[i].display_name %><br>
+        </a>
+        <% } %>
+    </ul>
+    <% } %>
+    <% if(!(individual instanceof Array)) { %>
+    <ul>
+        <a href="/individual/?individual_id=<%= individual[j].individual_id %>">
+            <%= individual[j].display_name %><br>
+        </a>
+    </ul>
+    <% } %>
+</div>
+</body>
+</html>
