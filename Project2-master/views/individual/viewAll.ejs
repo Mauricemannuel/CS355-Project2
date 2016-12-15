@@ -1,8 +1,8 @@
 <%- include("../includes/header.ejs", {extra: '', title:"Characters - View All", url:"http://www.solidbackgrounds.com/images/2560x1440/2560x1440-black-solid-color-background.jpg"}); %>
 <body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="50">
 <%- include("../includes/navbar.ejs"); %>
-            <h1 align="center">Characters</h1>
             <container>
+            <h1 align="center">Characters</h1>
                 <div class="row">
                 <% for(var i=0; result.length > i; i++ ) { %>
                     <div class="col-sm-3">
@@ -13,7 +13,8 @@
                     </div>
                 <% } %>
                 </div>
-            </container><br>
+            </container>
+        <br>
             <footer class="text-center">
                 <a class="up-arrow" href="#myPage" data-toggle="tooltip" title="TO TOP">
                     <span class="glyphicon glyphicon-chevron-up"></span>

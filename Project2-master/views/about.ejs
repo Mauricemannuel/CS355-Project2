@@ -1,0 +1,44 @@
+<%- include("./includes/header.ejs", {extra: '',title: 'About', url: ''}); %>
+<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="50">
+<%- include("./includes/navbar.ejs"); %>
+    <div class="container text-center">
+        <h3>THE MARVEL CINEMATIC UNIVERSE</h3>
+        <p>Here at MCU Incorporated, we love Marvel, so we created a website to keep track of some of the characters and what they can do.</p>
+        <p>Hopefully this website can help you too.</p>
+    </div>
+    <div class="bg-1">
+        <div class="container text-center">
+    <h3>THE COMPANY</h3>
+    <p>We are MCU Incorporated.</p>
+    <p>We are working to make the Marvel universe more well known, so that those people(you know who they are) don't have to watch all the movies.</p>
+    <p>Check out our <a href="https://github.com/Mauricemannuel">GitHub</a>.</p>
+        </div>
+    </div>
+
+
+    <div class="container text-center">
+        <h3>ER DIAGRAM</h3>
+        <a href="../images/ERD.jpg">
+        <img src="../images/ERD.jpg" alt="ER Diagram" width="100%" height="500px">
+        </a>
+    </div>
+
+
+    <div class="bg-1">
+        <div class="container text-center">
+            <h3>RELATIONAL SCHEMA</h3>
+            <a href="../images/RS.jpeg">
+                <img src="../images/RS.jpeg" alt="Relational Schema" width="100%" >
+            </a>
+        </div>
+    </div>
+
+    <footer class="text-center">
+        <a class="up-arrow" href="#myPage" data-toggle="tooltip" title="TO TOP">
+            <span class="glyphicon glyphicon-chevron-up"></span>
+        </a>
+    </footer>
+
+    <script>
+
+<%- include("./includes/footer.ejs"); %>
