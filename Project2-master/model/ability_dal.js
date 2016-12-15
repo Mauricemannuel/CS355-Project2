@@ -26,6 +26,15 @@ exports.getById = function(ability_id, callback) {
         callback(err, result);
     });
 };
+
+exports.getByIdI = function(individual_id, callback) {
+    var query = 'SELECT * FROM individual_ability WHERE individual_id = ?';
+    var queryData = [individual_id];
+    connection.query(query, queryData, function(err, result) {
+        callback(err, result);
+    });
+};
+
 exports.getPoweredPeople = function(ability_id, callback) {
     var query = 'SELECT i.* FROM individual_ability t ' +
         'LEFT JOIN individual i ON t.individual_id = i.individual_id ' +

@@ -13,6 +13,7 @@ var connection = mysql.createConnection(db.config);
 
 exports.getAll = function(callback) {
     var query = 'SELECT * FROM team;';
+    console.log("2323");
     connection.query(query, function(err, result) {
         callback(err, result);
     });
@@ -26,6 +27,15 @@ exports.getById = function(team_id, callback) {
         callback(err, result);
     });
 };
+
+exports.getByIdI = function(individual_id, callback) {
+    var query = 'SELECT * FROM individual_team WHERE individual_id = ?';
+    var queryData = [individual_id];
+    connection.query(query, queryData, function(err, result) {
+        callback(err, result);
+    });
+};
+
 exports.getMembersById = function(team_id, callback) {
     var query = 'SELECT i.* FROM individual_team t ' +
         'LEFT JOIN individual i ON t.individual_id = i.individual_id ' +

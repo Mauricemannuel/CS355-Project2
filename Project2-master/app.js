@@ -10,6 +10,8 @@ var individual = require('./routes/individual_routes');
 var team = require('./routes/team_routes');
 var ability = require('./routes/ability_routes');
 var user = require('./routes/user_routes');
+var loggedIn = false;
+module.exports = loggedIn
 
 var app = express();
 

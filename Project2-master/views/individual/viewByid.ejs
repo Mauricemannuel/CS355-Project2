@@ -51,6 +51,14 @@
                 </div>
                 <% } %>
                 <% } %>
+            <div class="miny">
+            <button style="background-color: transparent; border: 0px;" onclick="event.preventDefault();window.location.href='/individual/edit2/?individual_id=<%= result[0].individual_id %>'">UPDATE</button>
+            </div>
+            <div class="miny" style="margin-top: 0px">
+            <form action="/individual/delete/" style="display:inline;">
+                <input type="hidden" name="individual_id" id="individual_id" value="<%= result[0].individual_id %>" />
+                <input type="submit" value="DELETE" style="background-color: transparent; border: 0px;"/>
+            </form>
             </div>
         </div>
     </container>

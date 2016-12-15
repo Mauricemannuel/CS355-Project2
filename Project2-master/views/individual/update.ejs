@@ -1,0 +1,76 @@
+<%- include("../includes/header.ejs", {extra: '', title:"Characters - View All", url:"http://www.solidbackgrounds.com/images/2560x1440/2560x1440-black-solid-color-background.jpg"}); %>
+<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="50">
+<%- include("../includes/navbar.ejs"); %>
+
+
+<br>
+<form action="/individual/update" method="get">
+    <input type="hidden" id="individual_id" name="individual_id" value="<%= individual.individual_id %>">
+    Alias: <input style="width: 20%" id="display_name" name="display_name" type="text" value="<%= individual.display_name %>"/>
+    <br />
+    Real Name: <input style="width: 20%" iid="real_name" name="real_name" type="text" value="<%= individual.real_name %>"/>
+    <br />
+    Photo URL: <input style="width: 20%" iid="img_url" name="img_url" type="text" value="<%= individual.image_url %>"/>
+    <br />
+    Team:</br>
+    <select id="team_id" name="team_id" multiple="multiple">
+        <% for(var i=0; team.length > i; i++ ) {
+            var selected = "";
+            for (var j = 0; teami.length > j; j++) {
+                if (selected == "" && team[i].team_id == teami[j].team_id) {
+                    selected = "selected";
+                }
+            }
+        %>
+        <option value="<%= team[i].team_id %>" <%= selected %> ><%= team[i].team_name %></option>
+        <% } %>
+    </select>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#team_id').multiselect();
+        });
+    </script>
+    </br>
+    Threat:</br>
+    <select id="threat_id" name="threat_id" >
+        <% for(var i=0; threat.length > i; i++ ) {
+            var selected = "";
+            if(threat[i].threat_id == threati.threat_id) {
+                selected = "selected";
+            }
+        %>
+        <option value="<%= threat[i].threat_id %>" <%= selected %> ><%= threat[i].threat %></option>
+        <% } %>
+    </select>
+    </br>
+    Abilities:</br>
+    <select id="ability_id" name="ability_id" multiple="multiple">
+        <% for(var i=0; ability.length > i; i++ ) {
+            var selected = "";
+            for (var j = 0; abilityi.length > j; j++) {
+                if (selected == "" && ability[i].ability_id == abilityi[j].ability_id) {
+                    selected = "selected";
+                }
+            }
+        %>
+        <option value="<%= ability[i].ability_id %>" <%= selected %> ><%= ability[i].ability_name %></option>
+        <% } %>
+    </select>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#ability_id').multiselect();
+        });
+    </script>
+    </br>
+    <input type="submit" />
+</form>
+
+
+<footer class="text-center">
+    <a class="up-arrow" href="#myPage" data-toggle="tooltip" title="TO TOP">
+        <span class="glyphicon glyphicon-chevron-up"></span>
+    </a>
+</footer>
+</body>
+</html>
+

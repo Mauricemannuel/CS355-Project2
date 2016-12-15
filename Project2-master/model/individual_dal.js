@@ -18,6 +18,13 @@ exports.getAll = function(callback) {
     });
 }
 
+exports.getThreat = function(callback) {
+    var query = 'SELECT * FROM threat;';
+    connection.query(query, function(err, result) {
+        callback(err, result);
+    });
+}
+
 exports.getAllInTeams = function(callback) {
     var query = 'SELECT a.*, i.* FROM individual i ' +
         'LEFT JOIN individual_team ia ON i.individual_id = ia.individual_id ' +
@@ -54,6 +61,14 @@ exports.getById = function(individual_id, callback) {
     });
 };
 
+exports.getByIdThreat = function(individual_id, callback) {
+    var query = 'SELECT * FROM individual_threat WHERE individual_id = ?';
+    var queryData = [individual_id];
+    connection.query(query, queryData, function(err, result) {
+        callback(err, result);
+    });
+};
+
 exports.getAbilities = function(individual_id, callback) {
     var query = 'SELECT a.* FROM individual i ' +
         'LEFT JOIN individual_ability ia ON i.individual_id = ia.individual_id ' +
@@ -84,16 +99,113 @@ exports.getAllTeams = function(callback) {
 };
 
 exports.insert = function(params, callback) {
-    var query = 'INSERT INTO individual (display_name, real_name, image_url) VALUES (?, ?, ?)';
-    var queryData = [params.display_name, params.real_name, params.image_url];
+    var query = 'INSERT INTO individual (display_name, real_name, image_url) VALUES (?, ?, ?)'
+    var queryData = [params.display_name, params.real_name, params.img_url];
     connection.query(query, queryData, function(err, result) {
-        callback(err, result);
+        console.log("Result: " + result);
+        var individual_id = result.insertId;
+        var query = 'INSERT INTO individual_team (individual_id, team_id) VALUES ?;'
+        var queryData = [];
+        if(params.team_id instanceof Array) {
+            for (var i = 0; i < params.team_id.length; i++) {
+                queryData.push([individual_id, params.team_id[i]]);
+            }
+        }
+        else {
+            queryData.push(([individual_id, params.team_id]))
+        }
+        connection.query(query, [queryData], function(err, result) {
+            var query = 'INSERT INTO individual_team (individual_id, team_id) VALUES ?;'
+            var queryData = [];
+            if(params.team_id instanceof Array) {
+                for (var i = 0; i < params.team_id.length; i++) {
+                    queryData.push([individual_id, params.team_id[i]]);
+                }
+            }
+            else {
+                queryData.push(([individual_id, params.team_id]))
+            }
+            connection.query(query, [queryData], function(err, result) {
+                var query = 'INSERT INTO individual_ability (individual_id, ability_id) VALUES ?;'
+                var queryData = [];
+                if(params.ability_id instanceof Array) {
+                    for (var i = 0; i < params.ability_id.length; i++) {
+                        queryData.push([individual_id, params.ability_id[i]]);
+                    }
+                }
+                else {
+                    queryData.push(([individual_id, params.ability_id]))
+                }
+                connection.query(query, [queryData], function(err, result) {
+                    var query = 'INSERT INTO individual_threat (individual_id, threat_id) VALUES (?, ?);'
+                    var queryData = [individual_id, params.threat_id];
+                    connection.query(query, queryData, function(err, result) {
+                        callback(err, result);
+                    });
+                });
+            });
+        });
     });
+
+};
+
+exports.insertU = function(params, callback) {
+    var individual_id = params.individual_id;
+    var query = 'INSERT INTO individual (individual_id, display_name, real_name, image_url) VALUES (?, ?, ?, ?)'
+    var queryData = [individual_id, params.display_name, params.real_name, params.img_url];
+    connection.query(query, queryData, function(err, result) {
+        console.log("Result: " + result);
+        var query = 'INSERT INTO individual_team (individual_id, team_id) VALUES ?;'
+        var queryData = [];
+        if(params.team_id instanceof Array) {
+            for (var i = 0; i < params.team_id.length; i++) {
+                queryData.push([individual_id, params.team_id[i]]);
+            }
+        }
+        else {
+            queryData.push(([individual_id, params.team_id]))
+        }
+        connection.query(query, [queryData], function(err, result) {
+            var query = 'INSERT INTO individual_team (individual_id, team_id) VALUES ?;'
+            var queryData = [];
+            if(params.team_id instanceof Array) {
+                for (var i = 0; i < params.team_id.length; i++) {
+                    queryData.push([individual_id, params.team_id[i]]);
+                }
+            }
+            else {
+                queryData.push(([individual_id, params.team_id]))
+            }
+            connection.query(query, [queryData], function(err, result) {
+                var query = 'INSERT INTO individual_ability (individual_id, ability_id) VALUES ?;'
+                var queryData = [];
+                if(params.ability_id instanceof Array) {
+                    for (var i = 0; i < params.ability_id.length; i++) {
+                        queryData.push([individual_id, params.ability_id[i]]);
+                    }
+                }
+                else {
+                    queryData.push(([individual_id, params.ability_id]))
+                }
+                connection.query(query, [queryData], function(err, result) {
+                    var query = 'INSERT INTO individual_threat (individual_id, threat_id) VALUES (?, ?);'
+                    var queryData = [individual_id, params.threat_id];
+                    connection.query(query, queryData, function(err, result) {
+                        callback(err, result);
+                    });
+                });
+            });
+        });
+    });
+
 };
 
 exports.delete = function(individual_id, callback) {
     var query = 'DELETE FROM individual WHERE individual_id = ?';
     var queryData = [individual_id];
+    // console.log('Individual ID: ' + individual_id);
+    // console.log(query + "\n" + queryData);
+
     connection.query(query, queryData, function(err, result) {
         callback(err, result);
     });

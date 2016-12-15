@@ -17,14 +17,18 @@ exports.logIn = function(params, callback) {
     console.log("username: " + params.username + " password: " + params.pass);
     var queryData = [params.username, params.password];
     connection.query(query, queryData, function (err, result) {
-        console.log("Result: " + result);
-        callback(err, result);
+        if(result != null) {
+
+        }
+        else {
+            console.log("Result: " + result);
+            callback(err, result);
+        }
     });
 };
 
 exports.Who = function(params, callback) {
-    var query = 'SELECT * FROM user u ' +
-        'WHERE u.username = ? and u.password = ?';
+    var query = 'SELECT * FROM user where logged_in = 1';
     console.log("username: " + params.username + " password: " + params.pass);
     var queryData = [params.username, params.password];
     connection.query(query, queryData, function (err, result) {
